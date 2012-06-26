@@ -1,0 +1,1 @@
+require "doctor_swagger"
