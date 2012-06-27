@@ -9,7 +9,7 @@ module DoctorSwagger
     end
 
     def as_json(*)
-      if @example.present?
+      if @example && !@example.empty?
         super.merge('example' => @example)
       else
         super

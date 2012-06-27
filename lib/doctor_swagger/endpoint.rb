@@ -7,7 +7,7 @@ module DoctorSwagger
     end
 
     def operations_as_json
-      if @operations.present?
+      if @operations && !@operations.empty?
         {'operations' => @operations.map(&:as_json)}
       else
         {}

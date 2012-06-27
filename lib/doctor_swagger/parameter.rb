@@ -39,7 +39,7 @@ module DoctorSwagger
     end
 
     def allowable_values_as_json
-      if @allowable_values.present?
+      if @allowable_values && !@allowable_values.empty?
         {
           'allowableValues' => {
             'valueType' => 'LIST',

@@ -1,10 +1,12 @@
 module DoctorSwagger
   class SwaggerDoc
-    SWAGGER_VERSION = '1.0'
 
-    def initialize(resource_path, &block)
-      @resource_path = resource_path
-      @endpoints = []
+    def initialize(resource_path, options = {}, &block)
+      @resource_path   = resource_path
+      @swagger_version = options.fetch(:swagger_version, DoctorSwagger.swagger_version)
+      @api_version     = options.fetch(:api_version, DoctorSwagger.api_version)
+      @base_path       = options.fetch(:base_path, DoctorSwagger.base_path)
+      @endpoints       = []
       instance_eval(&block)
     end
 
@@ -12,24 +14,21 @@ module DoctorSwagger
       @endpoints << Endpoint.new(path, &block)
     end
 
-    def base_path
-      if Rails.env.development?
-        'http://localhost:3002/api/v1'
-      else
-        protocol = Rails.env.stage_production? ? 'http' : 'https'
-        tld = Rails.env.stage_production? ? 'local' : 'com'
-        "#{protocol}://#{Hijacker.current_client}-api.crystalcommerce.#{tld}/v1"
-      end
-    end
-
+    #TODO: add DSL for 
     def as_json(*)
       {
-        'apiVersion'     => Api::V1::Version::STRING,
-        'swaggerVersion' => SWAGGER_VERSION,
-        'basePath'       => base_path,
+        'apiVersion'     => try_call(@api_version),
+        'swaggerVersion' => try_call(@swagger_version),
+        'basePath'       => try_call(@base_path),
         'resourcePath'   => @resource_path,
         'apis'           => @endpoints.map(&:as_json)
       }
+    end
+
+  private
+
+    def try_call(value)
+      value.respond_to?(:call) ? value.call : value
     end
   end
 end
