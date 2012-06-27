@@ -1,18 +1,12 @@
+#TODO: specme
 module DoctorSwagger
   class RootSwaggerDoc < SwaggerDoc
-    def initialize(base_path_extension, &block)
-      @base_path_extension = base_path_extension
-      @endpoints = []
+    def initialize(base_path_extension, options = {}, &block)
+      @swagger_version = options.fetch(:swagger_version, DoctorSwagger.swagger_version)
+      @api_version     = options.fetch(:api_version, DoctorSwagger.api_version)
+      @base_path       = (options.fetch(:base_path, DoctorSwagger.base_path)) + base_path_extension
+      @endpoints       = []
       instance_eval(&block)
-    end
-
-    def as_json(*)
-      {
-        'apiVersion'     => Api::V1::Version::STRING,
-        'swaggerVersion' => SWAGGER_VERSION,
-        'basePath'       => base_path + @base_path_extension,
-        'apis'           => @endpoints.map(&:as_json)
-      }
     end
   end
 end
