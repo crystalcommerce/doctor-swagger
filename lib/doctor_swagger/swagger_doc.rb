@@ -3,9 +3,12 @@ module DoctorSwagger
 
     def initialize(resource_path, options = {}, &block)
       @resource_path   = resource_path
-      @swagger_version = options.fetch(:swagger_version, DoctorSwagger.swagger_version)
-      @api_version     = options.fetch(:api_version, DoctorSwagger.api_version)
-      @base_path       = options.fetch(:base_path, DoctorSwagger.base_path)
+      options[:swagger_version] ||= DoctorSwagger.swagger_version
+      options[:api_version]     ||= DoctorSwagger.api_version
+      options[:base_path]       ||= DoctorSwagger.base_path
+      @swagger_version = options[:swagger_version]
+      @api_version     = options[:api_version]
+      @base_path       = options[:base_path]
       @endpoints       = []
       instance_eval(&block)
     end
