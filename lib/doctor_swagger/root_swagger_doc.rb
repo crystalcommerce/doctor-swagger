@@ -7,7 +7,7 @@ module DoctorSwagger
       options[:base_path]       ||= DoctorSwagger.base_path
       @swagger_version = options[:swagger_version]
       @api_version     = options[:api_version]
-      @base_path       = options[:base_path]
+      @base_path       = try_call(options[:base_path])
       @base_path      += base_path_extension
       @endpoints       = []
       instance_eval(&block)
