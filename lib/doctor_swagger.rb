@@ -54,17 +54,17 @@ module DoctorSwagger
 
     def swagger_resource(resource_path, &block)
       @swagger_doc = SwaggerDoc.new(resource_path,
-                                    :swagger_version => DoctorSwagger.swagger_version,
-                                    :api_version     => DoctorSwagger.api_version,
-                                    :base_path       => DoctorSwagger.base_path,
+                                    :swagger_version => @swagger_version,
+                                    :api_version     => @api_version,
+                                    :base_path       => @base_path,
                                     &block)
     end
 
     def swagger_root_resource(resource_path, &block)
       @swagger_doc = RootSwaggerDoc.new(resource_path,
-                                        :swagger_version => DoctorSwagger.swagger_version,
-                                        :api_version     => DoctorSwagger.api_version,
-                                        :base_path       => DoctorSwagger.base_path,
+                                        :swagger_version => @swagger_version,
+                                        :api_version     => @api_version,
+                                        :base_path       => @base_path,
                                         &block)
     end
   end
