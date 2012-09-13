@@ -1,14 +1,14 @@
 module DoctorSwagger
   class ErrorResponse
-    def initialize(code, reason)
-      @code   = code
-      @reason = reason
+    def initialize(http_status, error)
+      @error       = error
+      @http_status = http_status
     end
 
     def as_json(*)
       {
-        'code'   => @code,
-        'reason' => @reason
+        'error'       => @error,
+        'http_status' => @http_status
       }
     end
   end

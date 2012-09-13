@@ -27,6 +27,8 @@ describe DoctorSwagger do
           internal_type '[Product]'
 
           standard_errors
+          error 418, "im_a_teapot"
+
           embeds :category, :variants
           scopes 'read-inventory', 'other-scope'
           summary 'Find products by category id'
@@ -134,8 +136,16 @@ describe DoctorSwagger do
               'responseClass' => '[product]',
               'errorResponses' => [
                 {
-                  'reason' => 'Resource Not Found',
-                  'code' => 404
+                  'error' => 'resource_not_found',
+                  'http_status' => 404
+                },
+                {
+                  'error' => 'access_denied',
+                  'http_status' => 401
+                },
+                {
+                  'error' => 'im_a_teapot',
+                  'http_status' => 418
                 }
               ],
               'summary' => 'Find products by category id',
@@ -180,8 +190,12 @@ describe DoctorSwagger do
               'responseClass' => 'product',
               'errorResponses' => [
                 {
-                  'reason' => 'Resource Not Found',
-                  'code' => 404
+                  'error' => 'resource_not_found',
+                  'http_status' => 404
+                },
+                {
+                  'error' => 'access_denied',
+                  'http_status' => 401
                 }
               ],
               'summary' => 'Find product by product id',
@@ -222,8 +236,12 @@ describe DoctorSwagger do
               'responseClass' => 'product',
               'errorResponses' => [
                 {
-                  'reason' => 'Resource Not Found',
-                  'code' => 404
+                  'error' => 'resource_not_found',
+                  'http_status' => 404
+                },
+                {
+                  'error' => 'access_denied',
+                  'http_status' => 401
                 }
               ],
               'summary' => 'Update product by product id',

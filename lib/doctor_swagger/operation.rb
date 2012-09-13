@@ -1,8 +1,5 @@
 module DoctorSwagger
   class Operation
-    NOT_FOUND = ErrorResponse.new(404, 'Resource Not Found')
-    STANDARD_ERRORS = [NOT_FOUND]
-
     def initialize(nickname, &block)
       @nickname = nickname
       @summary  = ''
@@ -45,7 +42,11 @@ module DoctorSwagger
     end
 
     def standard_errors
-      @error_responses |= STANDARD_ERRORS
+      @error_responses |= Errors.standard_errors
+    end
+
+    def error(http_status, error)
+      @error_responses << ErrorResponse.new(http_status, error)
     end
 
     def embeds(*embeds)

@@ -1,6 +1,7 @@
 require 'doctor_swagger/endpoint'
 require 'doctor_swagger/swagger_doc'
 require 'doctor_swagger/error_response'
+require 'doctor_swagger/errors'
 require 'doctor_swagger/operation'
 require 'doctor_swagger/parameter'
 require 'doctor_swagger/query_parameter'
