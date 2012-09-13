@@ -19,6 +19,8 @@ you wish to document with swagger.
   gem.require_paths = ["lib"]
   gem.version       = DoctorSwagger::VERSION
 
+  gem.add_dependency("rdiscount", "~>1.6.8")
+
   gem.add_development_dependency("rake", "~>0.9.2")
   gem.add_development_dependency("rspec", "~>2.10.0")
   gem.add_development_dependency("guard", "~>1.2.1")

@@ -1,3 +1,5 @@
+require 'rdiscount'
+
 module DoctorSwagger
   class Operation
     def initialize(nickname, &block)
@@ -34,7 +36,7 @@ module DoctorSwagger
     end
 
     def notes(notes)
-      @notes = notes
+      @notes = process_markdown(notes)
     end
 
     def summary(summary)
@@ -91,5 +93,8 @@ module DoctorSwagger
       end
     end
 
+    def process_markdown(text)
+      RDiscount.new(text).to_html
+    end
   end
 end

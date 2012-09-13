@@ -75,7 +75,9 @@ describe DoctorSwagger do
           end
 
           method :put
-          notes 'Updates a product'
+          notes <<-EOS
+# Updates a *product*
+EOS
 
           type 'product'
           internal_type 'Product'
@@ -129,7 +131,7 @@ describe DoctorSwagger do
                 }
               ],
               'httpMethod' => 'GET',
-              'notes' => 'Returns lots of products',
+              'notes' => "<p>Returns lots of products</p>\n",
               'embeds' => %w[category variants],
               'scopes' => %w[read-inventory other-scope],
               'responseTypeInternal' => '[Product]',
@@ -183,7 +185,7 @@ describe DoctorSwagger do
 
               ],
               'httpMethod' => 'GET',
-              'notes' => 'Returns a product',
+              'notes' => "<p>Returns a product</p>\n",
               'embeds' => %w[category variants],
               'scopes' => %w[read-inventory other-scope],
               'responseTypeInternal' => 'Product',
@@ -229,7 +231,7 @@ describe DoctorSwagger do
                 },
               ],
               'httpMethod' => 'PUT',
-              'notes' => 'Updates a product',
+              'notes' => "<h1>Updates a <em>product</em></h1>\n",
               'embeds' => %w[],
               'scopes' => %w[read-inventory other-scope],
               'responseTypeInternal' => 'Product',
