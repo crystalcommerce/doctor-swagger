@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-$:.unshift File.expand_path("lib", __FILE__)
+$:.unshift File.expand_path(File.join(File.dirname(__FILE__), 'lib'))
 require 'doctor_swagger/version'
 
 Gem::Specification.new do |gem|
