@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
-require File.expand_path('../lib/doctor_swagger/version', __FILE__)
+$:.unshift File.expand_path("lib", __FILE__)
+require 'doctor_swagger/version'
 
 Gem::Specification.new do |gem|
   gem.authors       = ["Donald Plummer", "Michael Xavier"]
