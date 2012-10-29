@@ -1,6 +1,6 @@
-# Doctor::Swagger
+# DoctorSwagger
 
-TODO: Write a gem description
+A DSL for generating Swagger schemas.
 
 ## Installation
 
@@ -18,7 +18,7 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+See the spec file.
 
 ## Contributing
 
@@ -27,3 +27,8 @@ TODO: Write usage instructions here
 3. Commit your changes (`git commit -am 'Added some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
+
+## License
+
+DoctorSwagger is released under the [MIT
+License](http://opensource.org/licenses/MIT).
