@@ -27,6 +27,10 @@ module DoctorSwagger
       @parameters << PostParameter.new(param, &block)
     end
 
+    def header_parameter(param, &block)
+      @parameters << HeaderParameter.new(param, &block)
+    end
+
     def post_body(&block)
       @parameters << PostBody.new(&block)
     end
