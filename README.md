@@ -1,4 +1,5 @@
 # DoctorSwagger
+[![Build Status](https://secure.travis-ci.org/crystalcommerce/doctor-swagger.png)](http://travis-ci.org/crystalcommerce/doctor-swagger)
 
 A DSL for generating Swagger schemas.
 
