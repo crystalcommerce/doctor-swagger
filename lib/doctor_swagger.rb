@@ -7,6 +7,7 @@ require 'doctor_swagger/parameter'
 require 'doctor_swagger/query_parameter'
 require 'doctor_swagger/post_parameter'
 require 'doctor_swagger/path_parameter'
+require 'doctor_swagger/header_parameter'
 require 'doctor_swagger/post_body'
 require 'doctor_swagger/root_swagger_doc'
 
