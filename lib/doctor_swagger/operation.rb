@@ -1,4 +1,4 @@
-require 'rdiscount'
+require 'kramdown'
 
 module DoctorSwagger
   class Operation
@@ -94,7 +94,8 @@ module DoctorSwagger
     end
 
     def process_markdown(text)
-      RDiscount.new(text).to_html
+      Kramdown::Document.new(text, :input => :markdown,
+                                   :auto_ids => false).to_html
     end
   end
 end
