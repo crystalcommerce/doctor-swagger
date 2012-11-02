@@ -14,6 +14,12 @@ describe DoctorSwagger do
         description 'Products'
 
         operation :index do
+          header_parameter :api_key do
+            description 'The api key issued to your app'
+            required!
+            type :string
+          end
+
           query_parameter :category_id do
             description 'The category id of the products you want'
             required!
@@ -109,6 +115,14 @@ EOS
           'operations' => [
             {
               'parameters' => [
+                {
+                  'name' => 'api_key',
+                  'description' => 'The api key issued to your app',
+                  'dataType' => 'string',
+                  'required' => true,
+                  'allowMultiple' => false,
+                  'paramType' => 'header'
+                },
                 {
                   'name' => 'category_id',
                   'description' => 'The category id of the products you want',
