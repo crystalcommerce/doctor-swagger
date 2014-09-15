@@ -10,6 +10,7 @@ module DoctorSwagger
       @api_version     = options[:api_version]
       @base_path       = options[:base_path]
       @endpoints       = []
+      @models          = {}
       instance_eval(&block)
     end
 
@@ -17,18 +18,31 @@ module DoctorSwagger
       @endpoints << Endpoint.new(path, &block)
     end
 
+    def models(hash)
+      raise "models must be a hash" if !hash.is_a?(Hash)
+      @models = hash
+    end
+
     #TODO: add DSL for 
     def as_json(*)
-      {
+      json = {
         'apiVersion'     => try_call(@api_version),
         'swaggerVersion' => try_call(@swagger_version),
         'basePath'       => try_call(@base_path),
         'resourcePath'   => @resource_path,
         'apis'           => @endpoints.map(&:as_json)
       }
+
+      if @models != {}
+        json.merge!({
+          'models'         => @models
+        })
+      end
+
+      json
     end
 
-  private
+    private
 
     def try_call(value)
       value.respond_to?(:call) ? value.call : value
